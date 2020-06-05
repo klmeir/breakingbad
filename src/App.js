@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from '@emotion/styled';
+import Sentence from './components/Sentence';
 
 const Container = styled.div`
   align-items: center;
@@ -21,14 +22,20 @@ const Button = styled.button`
 
 function App() {
 
+  const [sentence, setSentence] = useState({});
+
   const getDataAPI = async () => {
     const api = await fetch('https://breaking-bad-quotes.herokuapp.com/v1/quotes');
     const sentence = await api.json();
-    console.log(sentence[0]);
+    setSentence(sentence[0]);
   }
 
   return (
     <Container>
+      <Sentence
+          sentence={sentence}       
+      />
+
       <Button
         onClick={getDataAPI}
       >
