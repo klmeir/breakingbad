@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from '@emotion/styled';
 import Sentence from './components/Sentence';
 
@@ -18,6 +18,12 @@ const Button = styled.button`
   font-size: 2rem;
   margin-top: 3rem;
   padding: 1rem 3rem;
+  transition: background-size .8s ease;
+
+  :hover {
+    cursor:pointer;
+    background-size: 440px;
+  }
 `;
 
 function App() {
@@ -29,6 +35,10 @@ function App() {
     const sentence = await api.json();
     setSentence(sentence[0]);
   }
+
+  useEffect( () => {
+    getDataAPI();
+  }, []);
 
   return (
     <Container>
